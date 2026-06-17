@@ -10,3 +10,8 @@
 - install nodemon and update script inside a package.json
 - what "-g" means
 
+# Episode - 4
+- Initialise the git
+- git ignore file
+- create a remote repo on github
+- push code to github
