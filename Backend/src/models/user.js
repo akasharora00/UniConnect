@@ -29,11 +29,6 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-      validate(value) {
-        if (!validator.isStrongPassword(value)) {
-          throw new Error("Weak Password");
-        }
-      },
     },
     mobileNum: {
       type: Number,

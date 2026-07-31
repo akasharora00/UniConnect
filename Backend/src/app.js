@@ -4,15 +4,13 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const { userAuth } = require("./middlewares/auth");
 
-app.use(
-  cors({
+app.use(cors({
     origin: [
-      "http://localhost:5173",
-      "https://uni-connect-nu.vercel.app"
+        "http://localhost:5173",
+        "https://uni-connect-nu.vercel.app"
     ],
     credentials: true,
-  })
-);
+}));
 
 app.use(express.json()); // middleware for converting json to javascript
 app.use(cookieParser());
