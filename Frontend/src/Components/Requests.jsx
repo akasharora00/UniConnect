@@ -124,7 +124,8 @@ const Requests = () => {
                     alt={student.firstName}
                     className="w-14 h-14 rounded-full object-cover border-2 border-indigo-500/50 flex-shrink-0"
                     onError={(e) => {
-                      e.target.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(student.firstName)}`;
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(student.firstName)}`;
                     }}
                   />
                   <div>

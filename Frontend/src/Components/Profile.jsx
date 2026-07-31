@@ -205,7 +205,8 @@ const Profile = () => {
             alt={`${firstName} ${lastName}`}
             className="w-28 h-28 rounded-full object-cover border-4 border-[#11111E] shadow-xl relative z-10 mt-4 mb-5"
             onError={(e) => {
-              e.target.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(firstName)}`;
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(firstName)}`;
             }}
           />
 

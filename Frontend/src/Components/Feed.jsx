@@ -142,7 +142,8 @@ const Feed = () => {
             alt={`${currentUser.firstName} ${currentUser.lastName || ""}`}
             className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
             onError={(e) => {
-              e.target.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(currentUser.firstName)}`;
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(currentUser.firstName)}`;
             }}
           />
           {/* Transparent Dark overlay bottom gradient */}

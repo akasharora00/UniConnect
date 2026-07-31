@@ -151,7 +151,8 @@ function Navbar() {
                   alt="Profile Avatar"
                   className="w-8 h-8 rounded-full object-cover border border-indigo-500/40"
                   onError={(e) => {
-                    e.target.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(user.firstName)}`;
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(user.firstName)}`;
                   }}
                 />
                 <div className="text-left">

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../utils/constraints";
 import { addConnections } from "../utils/connectionsSlice";
@@ -86,12 +87,12 @@ const Connections = () => {
           <p className="text-gray-400 mt-3 max-w-md text-sm leading-relaxed">
             Your university network is empty. Swipe "Connect" on student profiles in the Discover Feed to establish project teams or study groups!
           </p>
-          <a
-            href="/feed"
+          <Link
+            to="/feed"
             className="mt-6 px-8 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold rounded-2xl transition shadow-lg shadow-indigo-600/20 active:scale-[0.98]"
           >
             Start Discovering Peers
-          </a>
+          </Link>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -113,7 +114,8 @@ const Connections = () => {
                       alt={student.firstName}
                       className="w-14 h-14 rounded-full object-cover border-2 border-indigo-500/50"
                       onError={(e) => {
-                        e.target.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(student.firstName)}`;
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(student.firstName)}`;
                       }}
                     />
                     <div>
