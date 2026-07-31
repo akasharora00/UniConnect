@@ -1,46 +1,35 @@
-const express = require("express")
-const app = express()
-const connectDB= require("./config/database")
-const bcrypt = require('bcrypt')
-const validateSignUpData = require("./utils/validation")
-const validator= require('validator')
-const cookieParser= require('cookie-parser')
-const jwt = require("jsonwebtoken");
-const { userAuth } = require("./middlewares/auth")
-const {getJWT} = require("./models/user")
+const express = require("express");
+const app = express();
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const { userAuth } = require("./middlewares/auth");
 
-app.use(cors({
-    origin: "http://localhost:5173",
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://uni-connect-nu.vercel.app"
+    ],
     credentials: true,
-}))  
+  })
+);
 
 app.use(express.json()); // middleware for converting json to javascript
-app.use(cookieParser())
+app.use(cookieParser());
 
-const authRouter = require("./routes/auth")
-const profileRouter = require("./routes/profile")
-const requestRouter = require("./routes/requests")
-const userRouter = require("./routes/user")
+const authRouter = require("./routes/auth");
+const profileRouter = require("./routes/profile");
+const requestRouter = require("./routes/requests");
+const userRouter = require("./routes/user");
 
 app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
-app.use("/", userRouter)
+app.use("/", userRouter);
 
+app.post("/sendConnectionRequest", userAuth, (req, res) => {
+  const userr = req.user;
+  res.send(userr.firstName + " Sentt");
+});
 
-app.post("/sendConnectionRequest", userAuth ,(req, res)=>{
-    const userr= req.user;
-    res.send(userr.firstName+ " Sentt")
-})
-
-
-
-connectDB().then(()=>{
-    console.log("database connected successfull");
-    app.listen(4000, () => {
-        console.log("Server is successfully running.");
-    });
-  }).catch((err)=>{
-    console.error("Database failed");
-})
+module.exports = app;
